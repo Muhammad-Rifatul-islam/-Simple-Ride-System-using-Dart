@@ -45,5 +45,17 @@ void main() {
   double distance = double.parse(stdin.readLineSync()!);
 
   print("-------------------Ride fare--------------------");
-   ride.printFare(ride: ride, distance: distance);
+  printFare(ride: ride,distance: distance);
+}
+
+
+
+
+
+
+void printFare({required Ride ride, required double distance}) {
+  double fare = ride.calculateFare(distance);
+
+  print("Distance: $distance km");
+  print("Total Fare: $fare TK");
 }
