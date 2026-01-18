@@ -15,9 +15,11 @@ class BikeRide extends Ride {
 
     return  baseFare + (distance * farePerKm);
   }
+
+  @override
+  void printFare({required Ride ride, required double distance}) {
+    double fare = ride.calculateFare(distance);
+   print("Ride Fare: ৳$fare");
+  }
 }
 
-void printFare({required Ride ride, required double distance}) {
-  double fare = ride.calculateFare(distance);
-  print("Ride Fare: ৳$fare");
-}

@@ -11,4 +11,10 @@ class CarRide implements Ride {
   double calculateFare(double distance) {
     return baseFare + (distance * farePerKm);
   }
+
+  @override
+  void printFare({required Ride ride, required double distance}) {
+    double fare = ride.calculateFare(distance);
+   print("Ride Fare: ৳$fare");
+  }
 }

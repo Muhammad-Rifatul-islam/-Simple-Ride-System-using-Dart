@@ -1,9 +1,11 @@
 import 'dart:io';
 
+
 import 'models/driver.dart';
 import 'service/ride.dart';
 import 'service/ride_implementation/bike_ride_imp.dart';
 import 'service/ride_implementation/car_ride_imp.dart';
+
 
 void main() {
   print("========= SIMPLE RIDE SYSTEM =========");
@@ -36,17 +38,12 @@ void main() {
 
   Driver driver = Driver(name, age, vehicleType);
 
-  print("\nDriver Info:");
+  print("-----------Driver Info-------------------");
   print(driver.getInfo());
 
   stdout.write("\nEnter Ride Distance (km): ");
   double distance = double.parse(stdin.readLineSync()!);
 
-  double fare = ride.calculateFare(distance);
-
-  print("\n========== RIDE SUMMARY ==========");
-  print("Vehicle Type : $vehicleType");
-  print("Distance     : $distance km");
-  print("Total Fare  : $fare TK");
-  print("=================================");
+  print("-------------------Ride fare--------------------");
+   ride.printFare(ride: ride, distance: distance);
 }
