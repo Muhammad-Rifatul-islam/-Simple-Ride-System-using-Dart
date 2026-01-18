@@ -1,15 +1,52 @@
-import 'package:assignment_3/models/driver.dart';
-import 'package:assignment_3/service/ride.dart';
-import 'package:assignment_3/service/ride_implementation/bike_ride_imp.dart';
+import 'dart:io';
+
+import 'models/driver.dart';
+import 'service/ride.dart';
+import 'service/ride_implementation/bike_ride_imp.dart';
+import 'service/ride_implementation/car_ride_imp.dart';
 
 void main() {
+  print("========= SIMPLE RIDE SYSTEM =========");
 
-  print("<------------DRIVER INFO------------------>");
-  Driver driver = Driver("Mr. Rifat", 25, "Bike");
+  stdout.write("Enter Driver Name: ");
+  String name = stdin.readLineSync()!;
+
+  stdout.write("Enter Driver Age: ");
+  int age = int.parse(stdin.readLineSync()!);
+
+  print("\nSelect Vehicle Type:");
+  print("1. Bike");
+  print("2. Car");
+  stdout.write("Enter choice (option -> 1 - 2: ");
+  int choice = int.parse(stdin.readLineSync()!);
+
+  Ride ride;
+  String vehicleType;
+
+  if (choice == 1) {
+    ride = BikeRide();
+    vehicleType = "Bike";
+  } else if (choice == 2) {
+    ride = CarRide();
+    vehicleType = "Car";
+  } else {
+    print("Invalid Choice!");
+    return;
+  }
+
+  Driver driver = Driver(name, age, vehicleType);
+
+  print("\nDriver Info:");
   print(driver.getInfo());
 
-  print("<------------Ride Fare INFO------------------>");
-  Ride ride = BikeRide();
+  stdout.write("\nEnter Ride Distance (km): ");
+  double distance = double.parse(stdin.readLineSync()!);
 
-  printFare(ride: ride,distance:  5);
+  double fare = ride.calculateFare(distance);
+
+  print("\n========== RIDE SUMMARY ==========");
+  print("Vehicle Type : $vehicleType");
+  print("Distance     : $distance km");
+  print("Total Fare  : $fare TK");
+  print("=================================");
 }
